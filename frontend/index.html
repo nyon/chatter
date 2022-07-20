@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Chatter - Connecting People</title>
+    <link href="app.css" rel="stylesheet" type="text/css">
+</head>
+<body>
+<div id="app">
+    <div class="app__inner">
+        <div class="chat__container">
+            <div class="header">
+                <div class="header__title">
+                    <div class="img">
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                            <path d="M21 6h-2v9H6v2c0 .55.45 1 1 1h11l4 4V7c0-.55-.45-1-1-1zm-4 6V3c0-.55-.45-1-1-1H3c-.55 0-1 .45-1 1v14l4-4h10c.55 0 1-.45 1-1z"></path>
+                        </svg>
+                    </div>
+                    <div class="header__name">
+                        <p class="header__name-paragraph" id="titleFirst">Chatter</p>
+                    </div>
+                </div>
+
+                <div class="tools">
+                    <button id="settings">
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                            <path d="M12 8c1.1 0 2-.9 2-2s-.9-2-2-2-2 .9-2 2 .9 2 2 2zm0 2c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2zm0 6c-1.1 0-2 .9-2 2s.9 2 2 2 2-.9 2-2-.9-2-2-2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+
+            <div class="chat__area">
+                <div class="message-container">
+
+                </div>
+
+                <div class="message__box">
+                    <div class="message__input-container">
+                        <input class="message__input" id="messageInput" name="message"
+                               placeholder="Type your message here">
+                    </div>
+                    <button class="button__send" id="send" tooltip="Send">
+                        <svg aria-hidden="true" focusable="false" viewBox="0 0 24 24">
+                            <path d="M2.01 21 23 12 2.01 3 2 10l15 2-15 2z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="md5.js"></script>
+<script src="app.js"></script>
+</body>
+</html>

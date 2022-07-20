@@ -1,0 +1,26 @@
+version: "3.3"
+services:
+  backend:
+    build: service
+    ports:
+      - "8080:8080"
+  web:
+    image: joseluisq/static-web-server:2
+    ports:
+      - "3000:80"
+    volumes:
+      - ./frontend:/public
+  prometheus:
+    image: prom/prometheus
+    ports:
+      - 9090:9090
+    volumes:
+      - ./service/prometheus.yml:/etc/prometheus/prometheus.yml
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+
+volumes:
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
