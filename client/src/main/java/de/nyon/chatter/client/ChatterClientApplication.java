@@ -11,8 +11,8 @@ import java.io.InputStreamReader;
 public class ChatterClientApplication {
     public static void main(String[] args) throws IOException, DeploymentException {
         String endpoint = "ws://localhost:8080/chat";
-        if (args.length > 1) {
-            endpoint = args[1];
+        if (args.length > 0) {
+            endpoint = args[0];
         }
 
         ChatterClient client = new ChatterClient.Builder()

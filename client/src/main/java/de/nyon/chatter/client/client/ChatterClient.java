@@ -3,7 +3,6 @@ package de.nyon.chatter.client.client;
 import javax.websocket.*;
 import java.io.IOException;
 import java.net.URI;
-import java.nio.ByteBuffer;
 import java.util.function.Consumer;
 
 @ClientEndpoint
@@ -24,6 +23,7 @@ public class ChatterClient {
 
     @OnOpen
     public void onOpen(Session session) {
+        System.out.println("Connection established.");
         this.session = session;
     }
 
@@ -35,7 +35,7 @@ public class ChatterClient {
      */
     @OnClose
     public void onClose(Session session, CloseReason reason) {
-        System.out.println("closing websocket");
+        System.out.println("Closing connection.");
         this.session = null;
         isConnected = false;
     }
@@ -48,11 +48,6 @@ public class ChatterClient {
     @OnMessage
     public void onMessage(String message) {
         onTextMessage.accept(message);
-    }
-
-    @OnMessage
-    public void onMessage(ByteBuffer bytes) {
-        System.out.println("Handle byte buffer");
     }
 
     public void sendMessage(String message) {

@@ -19,3 +19,7 @@ Run `./build.sh`.
 Run `docker-compose up`.
 If you want to use a web client open `http://localhost:3000` in your browser.
 If you want to use the CLI client run `client/run.sh` in your terminal.
+
+### Connect your local CLI client to the live demo
+
+Run `client/run.sh ws://nyon.de:8080/chat`
