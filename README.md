@@ -4,7 +4,7 @@ Simple messaging service written with spring reactive.
 
 ⚠️ Disclaimer: This project is not meant to be used in production. Use at your own risk.
 
-Live demo: http://chatter.nyon.de
+Live demo: http://nyon.de:3000
 
 ## Architecture overview
 
