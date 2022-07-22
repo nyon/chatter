@@ -21,7 +21,7 @@ function doReceiveMessage(socket, message) {
 function doHandleMessage(message) {
     const messageText = message.text;
     const nameRegex = /Your name is ([A-Za-z_\-]+)$/g;
-    const matches = nameRegex.exec(message);
+    const matches = nameRegex.exec(messageText);
     if(matches) {
         userName = matches[1];
     }
