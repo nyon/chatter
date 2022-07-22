@@ -56,16 +56,14 @@ public class ChatHandler implements WebSocketHandler {
         this.sessionFactory = sessionFactory;
 
         // For debugging purposes all input and output processors are logged on startup
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info("" + inputProcessors.size() + " input processors found: ");
-            for (IInputProcessor processor : inputProcessors) {
-                LOGGER.info("\t" + processor.getClass().getName());
-            }
+        LOGGER.info("" + inputProcessors.size() + " input processors found: ");
+        for (IInputProcessor processor : inputProcessors) {
+            LOGGER.info("\t" + processor.getClass().getName());
+        }
 
-            LOGGER.info("" + outputProcessors.size() + " output processors found: ");
-            for (IOutputProcessor processor : outputProcessors) {
-                LOGGER.info("\t" + processor.getClass().getName());
-            }
+        LOGGER.info("" + outputProcessors.size() + " output processors found: ");
+        for (IOutputProcessor processor : outputProcessors) {
+            LOGGER.info("\t" + processor.getClass().getName());
         }
     }
 
@@ -73,9 +71,7 @@ public class ChatHandler implements WebSocketHandler {
     public Mono<Void> handle(WebSocketSession webSocketSession) {
         // create a new session for every web socket session
         Session session = sessionFactory.createNewSession();
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info(session.getName() + " connected.");
-        }
+        LOGGER.info(session.getName() + " connected.");
 
         // setup send and receive channels and subscribe to it
         sendChannel(webSocketSession, session).subscribe();
@@ -87,9 +83,7 @@ public class ChatHandler implements WebSocketHandler {
     }
 
     private void logCloseStatus(CloseStatus status, Session session) {
-        if (LOGGER.isInfoEnabled()) {
-            LOGGER.info(session.getName() + " disconnected. Reason: " + status.getReason() + " (" + status.getCode() + ")");
-        }
+        LOGGER.info(session.getName() + " disconnected. Reason: " + status.getReason() + " (" + status.getCode() + ")");
     }
 
     private Flux<Message> receiveChannel(WebSocketSession webSocketSession, Session session) {
@@ -113,9 +107,7 @@ public class ChatHandler implements WebSocketHandler {
     }
 
     private void logIncomingMessage(WebSocketMessage webSocketMessage, Session session) {
-        if (LOGGER.isDebugEnabled()) {
-            LOGGER.debug("Incoming message from " + session.getName() + ": " + webSocketMessage.getPayloadAsText());
-        }
+        LOGGER.debug("Incoming message from " + session.getName() + ": " + webSocketMessage.getPayloadAsText());
     }
 
     private Mono<Void> sendChannel(WebSocketSession webSocketSession, Session session) {
