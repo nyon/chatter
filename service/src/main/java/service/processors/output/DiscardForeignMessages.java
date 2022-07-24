@@ -16,9 +16,10 @@ public class DiscardForeignMessages implements IOutputProcessor {
     public Flux<Message> decorate(Flux<Message> messageFlux, Session session) {
         return messageFlux.filter((message) -> {
             boolean isPublicMessage = "all".equals(message.getRecipientName());
-            boolean isMyMessage = session.getName().equals(message.getRecipientName());
+            boolean isForMe = session.getName().equals(message.getRecipientName());
+            boolean isFromMe = session.getName().equals(message.getSenderName());
 
-            return isPublicMessage || isMyMessage;
+            return isPublicMessage || isForMe || isFromMe;
         });
     }
 }

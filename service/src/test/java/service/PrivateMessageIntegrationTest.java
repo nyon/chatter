@@ -58,6 +58,38 @@ class PrivateMessageIntegrationTest {
     }
 
     @Test
+    void privateMessageShouldBeReceivedByOwnClient() throws IOException, DeploymentException, InterruptedException {
+        ArrayBlockingQueue<String> receivedMessagesByClientA = new ArrayBlockingQueue<>(10);
+        ArrayBlockingQueue<String> receivedMessagesByClientB = new ArrayBlockingQueue<>(10);
+
+        ChatterClient clientA = new ChatterClient.Builder()
+                .onTextMessage(receivedMessagesByClientA::add)
+                .build();
+        clientA.connect("ws://localhost:" + port + "/chat");
+
+
+        ChatterClient clientB = new ChatterClient.Builder()
+                .onTextMessage(receivedMessagesByClientB::add)
+                .build();
+        clientB.connect("ws://localhost:" + port + "/chat");
+
+
+        clientA.sendMessage("/me ");
+        String yourNameIsText = extractText(receivedMessagesByClientA.poll(10, TimeUnit.SECONDS));
+        String clientAName = yourNameIsText.replace("Your name is ", "");
+
+
+        clientB.sendMessage("/msg " + clientAName + " " + MY_SECRET_MESSAGE);
+        String secretMessageByClientB = receivedMessagesByClientB.poll(10, TimeUnit.SECONDS);
+        String secretText = extractText(secretMessageByClientB);
+        String secretRecipient = extractRecipient(secretMessageByClientB);
+
+        assertEquals(clientAName, secretRecipient, "recipient of message mismatches");
+        assertEquals(MY_SECRET_MESSAGE, secretText, "secret message is not as expected");
+
+    }
+
+    @Test
     void privateMessageShouldNotBeReceivedByUnknownClient() throws IOException, DeploymentException, ExecutionException, InterruptedException {
         ArrayBlockingQueue<String> receivedMessagesByClientA = new ArrayBlockingQueue<>(10);
         ArrayBlockingQueue<String> receivedMessagesByClientB = new ArrayBlockingQueue<>(10);
