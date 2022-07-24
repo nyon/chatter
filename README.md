@@ -8,6 +8,10 @@ receive the message in real time.
 
 Live demo: http://nyon.de:3000
 
+## General
+
+When connecting with a client, you are given a random name (e.g. Reliable_Elephant). You can use the special command `/me` to query your username. To send a private message to a specific user you can use `/msg Other_Username My secret message`.  
+
 ## Architecture overview
 
 ![](./overview.drawio.png)
