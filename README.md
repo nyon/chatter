@@ -71,6 +71,9 @@ The following sources have been used directly or indirectly to create this proje
 - Official documentation: WebFlux WebSocketHandler example in the official documentation. See [here](https://docs.spring.io/spring-framework/docs/current/reference/html/web-reactive.html#webflux-websocket).
 - StackOverflow answer: Using an embedded tomcat to create a websocket client. See [here](https://stackoverflow.com/questions/26452903/javax-websocket-client-simple-example).
 - JS function for md5 from [here](https://stackoverflow.com/a/60467595)
+- Material icons: https://mui.com/material-ui/material-icons/
+- Self hosted monitoring example: https://www.baeldung.com/spring-boot-self-hosted-monitoring
+- Uses [jmeter-websocket-samplers](https://bitbucket.org/pjtr/jmeter-websocket-samplers/downloads/)
 
 ## The future of chatter
 
